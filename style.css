@@ -41,9 +41,23 @@ button {
     width: 30%;
     font-weight: bold;
     padding: 5px 10px;
+    margin: 5% 10px;
 }
 button:nth-child(1) {
     background-color: green;
     border: none;
     color: white;
+}
+
+li {
+    list-style: none;
+    font-size: 0.8em;
+}
+li::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #333333;
+    margin-right: 10px;
 }
