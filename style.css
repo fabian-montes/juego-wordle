@@ -9,3 +9,9 @@ body {
     padding: 0;
     margin: 0;
 }
+.casilla {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    text-transform: uppercase;
+}
