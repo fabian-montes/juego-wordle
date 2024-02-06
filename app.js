@@ -5,16 +5,29 @@ let letras = 6;
 let palabraSecreta = generarPalabraAleatoria();
 console.log(palabraSecreta);
 
-function leerIntentoActual() {
-    palabra = '';
+function revisarIntentoActual() {
+    let palabra = '';
     for(let i=1; i<=letras; i++) {
-        palabra += document.getElementById(`intento${intento}-letra${i}`).value.toUpperCase();
+        let elemento = document.getElementById(`intento${intento}-letra${i}`);
+        let letra = elemento.value.toUpperCase();
+        if(letra == '') letra = ' '; // espacio no utilizado
+
+        if(letra == palabraSecreta[i-1]) {
+            elemento.style.backgroundColor = 'green';
+        } else if(palabraSecreta.includes(letra)) {
+            elemento.style.backgroundColor = 'yellow';
+        } else {
+            elemento.style.backgroundColor = '#333333';
+        }
+        palabra += letra;
     }
-    return palabra;
+    console.log(palabra);
 }
 function adivinar() {
-    let palabraUsuario = leerIntentoActual();
-    console.log(palabraUsuario);
+    revisarIntentoActual();
+
+    deshabilitarEntrada(intento++);
+    habilitarEntrada(intento);
 }
 function generarPalabraAleatoria() {
     const banco = '"ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -37,8 +50,12 @@ function crearEntradas() {
     }
     habilitarEntrada(1);
 }
+function deshabilitarEntrada(fila) {
+    for(let i=1; i<=letras; i++)
+        document.getElementById(`intento${fila}-letra${i}`).setAttribute('disabled', 'true');
+}
 function habilitarEntrada(fila) {
-    for(let i=1; i<=limiteIntentos; i++)
+    for(let i=1; i<=letras; i++)
         document.getElementById(`intento${fila}-letra${i}`).removeAttribute('disabled');
 }
 
