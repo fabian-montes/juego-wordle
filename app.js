@@ -41,11 +41,11 @@ function crearEntradas() {
     let area = document.getElementById('entrada');
     area.innerHTML = '';
     for(let i=1; i<=limiteIntentos; i++) {
-        fila = `<div id="intento${i}"> <span>intento #${i}<span>`;
+        fila = `<div id="intento${i}"><span>intento #${i}</span><div class="casillas">`;
         for(let j=1; j<=letras; j++) {
             fila += `<input class="casilla" id="intento${i}-letra${j}" maxlength="1" disabled>`;
         }
-        fila += "</div";
+        fila += "</div></div>";
         area.innerHTML += fila;
     }
     habilitarEntrada(1);
