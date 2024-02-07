@@ -30,7 +30,7 @@ function adivinar() {
     habilitarEntrada(intento);
 }
 function generarPalabraAleatoria() {
-    const banco = '"ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const banco = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let palabra = '';
     for(let i=0; i<letras; i++) {
         palabra += banco.charAt(Math.floor(Math.random() * banco.length));
