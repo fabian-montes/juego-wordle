@@ -1,9 +1,8 @@
 const limiteIntentos = 6;
+const letras = 6;
 let intento = 1;
 let pistas = 2;
-let letras = 6;
-let palabraSecreta = generarPalabraAleatoria();
-console.log(palabraSecreta);
+let palabraSecreta = '';
 
 function revisarIntentoActual() {
     let palabra = '';
@@ -29,8 +28,14 @@ function revisarIntentoActual() {
 function adivinar() {
     revisarIntentoActual();
 
-    deshabilitarEntrada(intento++);
-    habilitarEntrada(intento);
+    if(intento < limiteIntentos) {
+        deshabilitarEntrada(intento++);
+        habilitarEntrada(intento);
+    } else {
+        document.getElementById('nuevo-juego').removeAttribute('disabled');
+        document.getElementById('adivinar').setAttribute('disabled', 'true');
+        document.getElementById('pista').setAttribute('disabled', 'true');
+    }
 }
 function generarPalabraAleatoria() {
     const banco = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -62,9 +67,22 @@ function habilitarEntrada(fila) {
         document.getElementById(`intento${fila}-letra${i}`).removeAttribute('disabled');
 }
 
+function nuevoJuego() {
+    palabraSecreta = generarPalabraAleatoria();
+    intento = 1;
+    pistas = 2;
+    inicializar();
+    console.log(palabraSecreta);
+}
+function pista() {
+    console.log('quiero una pista')
+}
 function inicializar() {
     crearEntradas();
+    document.getElementById('nuevo-juego').setAttribute('disabled', 'true');
+    document.getElementById('adivinar').removeAttribute('disabled');
+    document.getElementById('pista').removeAttribute('disabled');
     document.getElementById('mensaje').innerText = 'adivina la palabra';
 }
 
-inicializar();
+nuevoJuego();
