@@ -20,16 +20,15 @@ function revisarIntentoActual() {
         }
         palabra += letra;
     }
-
+    return palabra;
+}
+function adivinar() {
+    let palabra = revisarIntentoActual();
+    
     if(palabra == palabraSecreta) {
         document.getElementById('mensaje').innerText = `felicidades has ganado! en ${intento} intento${intento==1 ? '' : 's'}`;
         juegoTerminado();
-    }
-}
-function adivinar() {
-    revisarIntentoActual();
-
-    if(intento < limiteIntentos) {
+    } else if(intento < limiteIntentos) {
         deshabilitarEntrada(intento++);
         habilitarEntrada(intento);
     } else {
