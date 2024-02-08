@@ -13,11 +13,11 @@ function revisarIntentoActual() {
         if(letra == '') letra = ' '; // espacio no utilizado
         
         if(letra == palabraSecreta[i-1]) {
-            elemento.style.backgroundColor = 'green';
+            elemento.classList.add('correcto');
         } else if(palabraSecreta.includes(letra)) {
-            elemento.style.backgroundColor = 'yellow';
+            elemento.classList.add('modificar');
         } else {
-            elemento.style.backgroundColor = '#333333';
+            elemento.classList.add('incorrecto');
         }
         palabra += letra;
     }

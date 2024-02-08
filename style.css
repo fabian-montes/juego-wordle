@@ -78,3 +78,16 @@ li::before {
 #wa::before {
     background-color: yellow;
 }
+
+.correcto {
+    background-color: green;
+    color: white;
+}
+.modificar {
+    background-color: yellow;
+    color: black;
+}
+.incorrecto {
+    background-color: #333333;
+    color: white;
+}
