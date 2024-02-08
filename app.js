@@ -94,8 +94,12 @@ function pista() {
     document.getElementById(`intento${intento}-letra${indice+1}`).value = pista;
     desactivarElemento(`intento${intento}-letra${indice+1}`);
     pistas--;
+    textoBotonPista();
 }
 
+function textoBotonPista() {
+    document.getElementById('pista').innerText = `pistas: ${pistas}`;
+}
 function desactivarElemento(id) {
     document.getElementById(id).setAttribute('disabled', 'true');
 }
@@ -104,6 +108,7 @@ function activarElemento(id) {
 }
 function inicializar() {
     crearEntradas();
+    textoBotonPista();
     desactivarElemento('nuevo-juego');
     activarElemento('adivinar');
     activarElemento('pista');
