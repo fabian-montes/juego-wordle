@@ -7,6 +7,7 @@ body {
 h1 {
     text-transform: capitalize;
     text-align: center;
+    height: 100px;
     padding: 0;
     margin: 0;
 }
@@ -40,6 +41,10 @@ span {
     float: left;
 }
 
+.botones {
+    margin: 20px 0;
+    display: flex;
+}
 button {
     font-size: 1em;
     border-radius: 10px;
@@ -61,8 +66,15 @@ li {
 li::before {
     content: '';
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     background-color: #333333;
     margin-right: 10px;
+    border: black solid 2px;
+}
+#ac::before {
+    background-color: green;
+}
+#wa::before {
+    background-color: yellow;
 }
