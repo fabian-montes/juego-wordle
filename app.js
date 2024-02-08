@@ -3,6 +3,7 @@ const letras = 6;
 let intento = 1;
 let pistas = 2;
 let palabraSecreta = '';
+let pistasPrevias = [];
 
 function revisarIntentoActual() {
     let palabra = '';
@@ -68,6 +69,7 @@ function habilitarEntrada(fila) {
 
 function nuevoJuego() {
     palabraSecreta = generarPalabraAleatoria();
+    pistasPrevias = [];
     intento = 1;
     pistas = 2;
     inicializar();
@@ -82,7 +84,16 @@ function juegoTerminado() {
     desactivarElemento('pista');
 }
 function pista() {
-    console.log('quiero una pista')
+    if(pistas <= 0) return;
+    let indice = Math.floor(Math.random() * palabraSecreta.length);
+    while(pistasPrevias.includes(indice)) {
+        indice = Math.floor(Math.random() * palabraSecreta.length);
+    }
+    let pista = palabraSecreta.charAt(indice);
+    
+    document.getElementById(`intento${intento}-letra${indice+1}`).value = pista;
+    desactivarElemento(`intento${intento}-letra${indice+1}`);
+    pistas--;
 }
 
 function desactivarElemento(id) {
