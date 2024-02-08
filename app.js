@@ -21,7 +21,10 @@ function revisarIntentoActual() {
         }
         palabra += letra;
     }
-    console.log(palabra);
+
+    if(palabra == palabraSecreta) {
+        document.getElementById('mensaje').innerText = `felicidades has ganado! en ${intento} intento${intento==1 ? '' : 's'}`;
+    }
 }
 function adivinar() {
     revisarIntentoActual();
@@ -59,4 +62,9 @@ function habilitarEntrada(fila) {
         document.getElementById(`intento${fila}-letra${i}`).removeAttribute('disabled');
 }
 
-crearEntradas();
+function inicializar() {
+    crearEntradas();
+    document.getElementById('mensaje').innerText = 'adivina la palabra';
+}
+
+inicializar();
