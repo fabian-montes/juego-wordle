@@ -32,9 +32,9 @@ function adivinar() {
         deshabilitarEntrada(intento++);
         habilitarEntrada(intento);
     } else {
-        document.getElementById('nuevo-juego').removeAttribute('disabled');
-        document.getElementById('adivinar').setAttribute('disabled', 'true');
-        document.getElementById('pista').setAttribute('disabled', 'true');
+        activarElemento('nuevo-juego');
+        desactivarElemento('adivinar');
+        desactivarElemento('pista');
     }
 }
 function generarPalabraAleatoria() {
@@ -60,11 +60,11 @@ function crearEntradas() {
 }
 function deshabilitarEntrada(fila) {
     for(let i=1; i<=letras; i++)
-        document.getElementById(`intento${fila}-letra${i}`).setAttribute('disabled', 'true');
+        desactivarElemento(`intento${fila}-letra${i}`);
 }
 function habilitarEntrada(fila) {
     for(let i=1; i<=letras; i++)
-        document.getElementById(`intento${fila}-letra${i}`).removeAttribute('disabled');
+        activarElemento(`intento${fila}-letra${i}`);
 }
 
 function nuevoJuego() {
@@ -77,11 +77,18 @@ function nuevoJuego() {
 function pista() {
     console.log('quiero una pista')
 }
+
+function desactivarElemento(id) {
+    document.getElementById(id).setAttribute('disabled', 'true');
+}
+function activarElemento(id) {
+    document.getElementById(id).removeAttribute('disabled');
+}
 function inicializar() {
     crearEntradas();
-    document.getElementById('nuevo-juego').setAttribute('disabled', 'true');
-    document.getElementById('adivinar').removeAttribute('disabled');
-    document.getElementById('pista').removeAttribute('disabled');
+    desactivarElemento('nuevo-juego');
+    activarElemento('adivinar');
+    activarElemento('pista');
     document.getElementById('mensaje').innerText = 'adivina la palabra';
 }
 
