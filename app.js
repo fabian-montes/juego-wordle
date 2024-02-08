@@ -10,7 +10,7 @@ function revisarIntentoActual() {
         let elemento = document.getElementById(`intento${intento}-letra${i}`);
         let letra = elemento.value.toUpperCase();
         if(letra == '') letra = ' '; // espacio no utilizado
-
+        
         if(letra == palabraSecreta[i-1]) {
             elemento.style.backgroundColor = 'green';
         } else if(palabraSecreta.includes(letra)) {
@@ -23,6 +23,7 @@ function revisarIntentoActual() {
 
     if(palabra == palabraSecreta) {
         document.getElementById('mensaje').innerText = `felicidades has ganado! en ${intento} intento${intento==1 ? '' : 's'}`;
+        juegoTerminado();
     }
 }
 function adivinar() {
@@ -32,9 +33,8 @@ function adivinar() {
         deshabilitarEntrada(intento++);
         habilitarEntrada(intento);
     } else {
-        activarElemento('nuevo-juego');
-        desactivarElemento('adivinar');
-        desactivarElemento('pista');
+        document.getElementById('mensaje').innerText = "se terminaron los intentos";
+        juegoTerminado();
     }
 }
 function generarPalabraAleatoria() {
@@ -73,6 +73,14 @@ function nuevoJuego() {
     pistas = 2;
     inicializar();
     console.log(palabraSecreta);
+}
+function juegoTerminado() {
+    if(intento < limiteIntentos) {
+        deshabilitarEntrada(intento);
+    }
+    activarElemento('nuevo-juego');
+    desactivarElemento('adivinar');
+    desactivarElemento('pista');
 }
 function pista() {
     console.log('quiero una pista')
