@@ -37,12 +37,12 @@ function adivinar() {
         juegoTerminado();
     }
 }
-function generarPalabraAleatoria() {
-    const banco = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let palabra = '';
-    for(let i=0; i<letras; i++) {
-        palabra += banco.charAt(Math.floor(Math.random() * banco.length));
-    }
+async function generarPalabraAleatoria() {
+    let response = await fetch(`https://random-word-api.herokuapp.com/word?length=${letras}`);
+    let arreglo = await response.json();
+    let palabra = await arreglo[0];
+    palabra = palabra.toUpperCase();
+    //console.log(typeof palabra);
     return palabra;
 }
 function crearEntradas() {
@@ -67,8 +67,8 @@ function habilitarEntrada(fila) {
         activarElemento(`intento${fila}-letra${i}`);
 }
 
-function nuevoJuego() {
-    palabraSecreta = generarPalabraAleatoria();
+async function nuevoJuego() {
+    palabraSecreta = await generarPalabraAleatoria();
     pistasPrevias = [];
     intento = 1;
     pistas = 2;
